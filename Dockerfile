@@ -16,6 +16,7 @@ ADD supervisor.webvirtmgr.conf /etc/supervisor/conf.d/webvirtmgr.conf
 ADD gunicorn.conf.py /webvirtmgr/conf/gunicorn.conf.py
 
 ADD bootstrap.sh /webvirtmgr/bootstrap.sh
+ADD entrypoint.sh /webvirtmgr/entrypoint.sh
 
 RUN useradd webvirtmgr -g libvirtd -u 1010 -d /data/vm/ -s /sbin/nologin
 RUN chown webvirtmgr:libvirtd -R /webvirtmgr
@@ -27,4 +28,4 @@ VOLUME /data/vm
 
 EXPOSE 8080
 EXPOSE 6080
-CMD ["supervisord", "-n"]
+CMD ["/webvirtmgr/entrypoint.sh"]
