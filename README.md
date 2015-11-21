@@ -15,7 +15,8 @@ $ sudo chown -R webvirtmgr:webvirtmgr /data/vm
 ### Usage
 
 ```
-$ docker run -d -p 8080:8080 -p 6080:6080 --name webvirtmgr -v /data/vm:/data/vm primiano/docker-webvirtmgr
+$ LIBVIRT_GUID=`getent group libvirtd | cut -d":" -f3`
+$ docker run -d -p 8080:8080 -p 6080:6080 --name webvirtmgr -e LIBVIRTGID="$LIBVIRT_GIUD" -v /data/vm:/data/vm -v /var/run/libvirt:/var/run/libvirt primiano/docker-webvirtmgr
 ```
 
 ### libvirtd configuration on the host
