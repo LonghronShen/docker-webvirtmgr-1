@@ -1,6 +1,8 @@
 FROM ubuntu:18.04
 MAINTAINER Primiano Tucci <p.tucci@gmail.com>
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get -y update && \
     apt-get -y install git python-pip python-libvirt python-libxml2 supervisor novnc
 
